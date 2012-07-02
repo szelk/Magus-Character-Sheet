@@ -161,6 +161,30 @@ class Property implements BaseProperty {
 
 }
 
+class Qualification implements BaseProperty {
+	String name;
+	QualificationType type;
+	int qualificationID;
+	
+	public Qualification(String name, QualificationType type){
+		
+	}
+
+	public int getValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
+enum QualificationType {
+	Percentage, Grade
+}
+
 interface Calculation {
 	int calculate(int value);
 }

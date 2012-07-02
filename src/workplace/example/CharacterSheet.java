@@ -57,11 +57,6 @@ public class CharacterSheet {
 		e.AddPropertyModifier(PropertyType.Erõ, 2);
 		e.AddPropertyModifier(PropertyType.Asztrál, -2);
 		this.AddEquipment(e);
-
-		// int asdf = getProperty(PropertyType.TÉ).getValue();
-		// asdf += 1;
-		// asdf = getProperty(PropertyType.Erõ).getValue();
-
 	}
 
 	public Property getProperty(PropertyType type) {

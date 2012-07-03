@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res/workplace.example"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvEro"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        custom:myText="Erő" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingRight="10dp"
-            android:text="Erő:"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvGy"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Gyorsaság" />
 
-        <TextView
-            android:id="@+id/tvValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="0"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvU"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Ügyesség" />
 
-    </LinearLayout>
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvAll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Állóképesség" />
+
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvE"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Egészség" />
+
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvSzep"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Szépség" />
+
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvInt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Intelligencia" />
+
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvAk"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        custom:myText="Akaraterő" />
+
+    <workplace.example.AbilityCellView
+        android:id="@+id/acvAszt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        custom:myText="Asztrál" />
 
 </LinearLayout>

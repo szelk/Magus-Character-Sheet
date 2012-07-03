@@ -1,20 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="castes">
+
+    <string-array name="caste_names">
         <item>Harcos</item>
+        <item>Gladiátor</item>
         <item>Fejvadász</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    </string>
-    
-    
+        <item>Lovag</item>
+        <item>Tolvaj</item>
+        <item>Bárd</item>
+        <item>Pap</item>
+        <item>Paplovag</item>
+        <item>Harcművész</item>
+        <item>Kardművész</item>
+        <item>Boszorkány</item>
+        <item>Boszorkánymester</item>
+        <item>Tűzvarázsló</item>
+        <item>Varázsló</item>
+    </string-array>
+
+    <integer-array name="caste_KE">
+        <item>9</item>
+        <item>9</item>
+        <item>10</item>
+        <item>5</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="caste_TE">
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>20</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="caste_VE">
+        <item>75</item>
+        <item>75</item>
+        <item>75</item>
+        <item>75</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="caste_CE">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+
 </resources>

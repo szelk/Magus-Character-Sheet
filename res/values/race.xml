@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="race_names">
+        <item>Ember</item>
+        <item>Elf</item>
+        <item>Félelf</item>
+        <item>Törpe</item>
+        <item>Udvari ork</item>
+    </string-array>
+
+    <integer-array name="ability_ero">
+        <item>0</item>
+        <item>-2</item>
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+    <integer-array name="ability_gyorsasag">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="ability_ugyesseg">
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="ability_allokepesseg">
+        <item>0</item>
+        <item>-1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+    <integer-array name="ability_egeszseg">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </integer-array>
+    <integer-array name="ability_szepseg">
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>-2</item>
+        <item>-3</item>
+    </integer-array>
+    <integer-array name="ability_intelligencia">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>-1</item>
+        <item>-1</item>
+    </integer-array>
+    <integer-array name="ability_akaratero">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="ability_asztral">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>-1</item>
+        <item>-3</item>
+    </integer-array>
+
+</resources>

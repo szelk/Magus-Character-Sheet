@@ -25,7 +25,12 @@ public class MAGUSActivity extends FragmentActivity { // OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		cs = new CharacterSheet();
+		cs = new CharacterSheet(1, 0, new int[] { 12, 12, 12, 12, 12, 12, 12, 12, 12 }, getResources());
+		cs.setName("Canon");
+		cs.setAge(23);
+
+		HeaderView header = (HeaderView) findViewById(R.id.header);
+		header.setTitle(cs.toString());
 
 		isJustStarted = true;
 
@@ -39,7 +44,6 @@ public class MAGUSActivity extends FragmentActivity { // OnClickListener
 
 		mPager.setAdapter(adapter);
 		mPager.setCurrentItem(0);
-
 	}
 
 	@Override

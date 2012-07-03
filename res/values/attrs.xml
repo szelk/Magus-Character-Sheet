@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AbilityCellView">
+        <attr name="myText" format="string"/>
+    </declare-styleable>
+</resources>

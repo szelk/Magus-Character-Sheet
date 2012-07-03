@@ -4,14 +4,6 @@
     <string name="hello">Hello World, MAGUSActivity!</string>
     <string name="app_name">MAGUS</string>
 
-    <string-array name="race_names">
-        <item>Ember</item>
-        <item>Elf</item>
-        <item>Fél-elf</item>
-        <item>Törpe</item>
-        <item>Udvari ork</item>
-    </string-array>
-
     
 
 </resources>

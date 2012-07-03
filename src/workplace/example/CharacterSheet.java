@@ -1,57 +1,138 @@
 package workplace.example;
 
-import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
-public class CharacterSheet {
-	ArrayList<Property> propertyList;
-	ArrayList<Equipment> equipmentList;
+import android.content.res.Resources;
 
-	// property-nek kéne egy õsosztály, ami csak értétkeket tárol
-	public CharacterSheet() {
+public class CharacterSheet {
+	int raceID;
+	String raceName;
+	int casteID;
+	String casteName;
+
+	String name;
+	int age;
+
+	ArrayList<Property> propertyList;
+	//felszerelések és a képzettségek alapból készen vannak (kész objektumot le kéne menteni, majd visszatölteni ha kell)
+	ArrayList<Equipment> equipmentList;
+	ArrayList<Qualification> qualificationList;
+
+	public CharacterSheet(int raceID, int casteID, int[] abilities, Resources res) {
+		raceName = res.getStringArray(R.array.race_names)[raceID];
+		casteName = res.getStringArray(R.array.caste_names)[casteID];
+
+		name = "";
+		age = 0;
+
 		propertyList = new ArrayList<Property>();
 		equipmentList = new ArrayList<Equipment>();
-		// Generals
-		int[] array = new int[] { 12, 13, 12, 11, 12, 13, 12, 11, 12 };
-		int[] array2 = new int[] { 5, 30, 70, 10 };
-
 		// Adatbázis hozzáférés is szükséges itt!!
 
+		String base = "Generált alap";
 		propertyList.add(new Property("Erõ", PropertyType.Erõ));
-		getProperty(PropertyType.Erõ).AddModificatory(new SimpleProperty("alap", array[0]));
+		getProperty(PropertyType.Erõ).AddModificatory(new SimpleProperty(base, abilities[0]));
 		propertyList.add(new Property("Gyorsaság", PropertyType.Gyorsaság));
-		getProperty(PropertyType.Gyorsaság).AddModificatory(new SimpleProperty("alap", array[1]));
+		getProperty(PropertyType.Gyorsaság).AddModificatory(new SimpleProperty(base, abilities[1]));
 		propertyList.add(new Property("Ügyesség", PropertyType.Ügyesség));
-		getProperty(PropertyType.Ügyesség).AddModificatory(new SimpleProperty("alap", array[2]));
+		getProperty(PropertyType.Ügyesség).AddModificatory(new SimpleProperty(base, abilities[2]));
 		propertyList.add(new Property("Állóképesség", PropertyType.Állóképesség));
-		getProperty(PropertyType.Állóképesség).AddModificatory(new SimpleProperty("alap", array[3]));
+		getProperty(PropertyType.Állóképesség).AddModificatory(new SimpleProperty(base, abilities[3]));
 		propertyList.add(new Property("Egészség", PropertyType.Egészség));
-		getProperty(PropertyType.Egészség).AddModificatory(new SimpleProperty("alap", array[4]));
+		getProperty(PropertyType.Egészség).AddModificatory(new SimpleProperty(base, abilities[4]));
 		propertyList.add(new Property("Szépség", PropertyType.Szépség));
-		getProperty(PropertyType.Szépség).AddModificatory(new SimpleProperty("alap", array[5]));
+		getProperty(PropertyType.Szépség).AddModificatory(new SimpleProperty(base, abilities[5]));
 		propertyList.add(new Property("Intelligencia", PropertyType.Intelligencia));
-		getProperty(PropertyType.Intelligencia).AddModificatory(new SimpleProperty("alap", array[6]));
+		getProperty(PropertyType.Intelligencia).AddModificatory(new SimpleProperty(base, abilities[6]));
 		propertyList.add(new Property("Akaraterõ", PropertyType.Akaraterõ));
-		getProperty(PropertyType.Akaraterõ).AddModificatory(new SimpleProperty("alap", array[7]));
+		getProperty(PropertyType.Akaraterõ).AddModificatory(new SimpleProperty(base, abilities[7]));
 		propertyList.add(new Property("Asztrál", PropertyType.Asztrál));
-		getProperty(PropertyType.Asztrál).AddModificatory(new SimpleProperty("alap", array[8]));
+		getProperty(PropertyType.Asztrál).AddModificatory(new SimpleProperty(base, abilities[8]));
 
 		propertyList.add(new Property("Kezdeményezõ érték", PropertyType.KÉ));
-		getProperty(PropertyType.KÉ).AddModificatory(new SimpleProperty("Kaszt alap", array2[0]));
 		getProperty(PropertyType.KÉ).AddModificatory(getProperty(PropertyType.Gyorsaság), new Above10());
 		getProperty(PropertyType.KÉ).AddModificatory(getProperty(PropertyType.Ügyesség), new Above10());
 
 		propertyList.add(new Property("Támadó érték", PropertyType.TÉ));
-		getProperty(PropertyType.TÉ).AddModificatory(new SimpleProperty("Kaszt alap", array2[1]));
 		getProperty(PropertyType.TÉ).AddModificatory(getProperty(PropertyType.Erõ), new Above10());
 		getProperty(PropertyType.TÉ).AddModificatory(getProperty(PropertyType.Gyorsaság), new Above10());
 		getProperty(PropertyType.TÉ).AddModificatory(getProperty(PropertyType.Ügyesség), new Above10());
 
 		propertyList.add(new Property("Védekezõ érték", PropertyType.VÉ));
-		getProperty(PropertyType.VÉ).AddModificatory(new SimpleProperty("Kaszt alap", array2[2]));
+		getProperty(PropertyType.VÉ).AddModificatory(getProperty(PropertyType.Gyorsaság), new Above10());
+		getProperty(PropertyType.VÉ).AddModificatory(getProperty(PropertyType.Ügyesség), new Above10());
 
 		propertyList.add(new Property("Célzó érték", PropertyType.CÉ));
-		getProperty(PropertyType.CÉ).AddModificatory(new SimpleProperty("Kaszt alap", array2[3]));
+		getProperty(PropertyType.CÉ).AddModificatory(getProperty(PropertyType.Ügyesség), new Above10());
+
+		propertyList.add(new Property("Sebzés", PropertyType.Sp));
+		getProperty(PropertyType.Sp).AddModificatory(getProperty(PropertyType.Erõ), new Calculation() {
+			public int calculate(int value) {
+				if (value <= 16) {
+					return 0;
+				} else {
+					return (value - 16);
+				}
+			}
+		});
+
+		propertyList.add(new Property("Mozgásgátló tényezõ", PropertyType.MGT));
+		getProperty(PropertyType.Gyorsaság).AddModificatory(getProperty(PropertyType.MGT), new Calculation() {
+			public int calculate(int value) {
+				return (-value);
+			}
+		});
+		getProperty(PropertyType.Ügyesség).AddModificatory(getProperty(PropertyType.MGT), new Calculation() {
+			public int calculate(int value) {
+				return (-value);
+			}
+		});
+
+		propertyList.add(new Property("Sebzés felfogó érték", PropertyType.SFÉ));
+		// Páncélzat
+
+		base = "Faj alap";
+		int value = res.getIntArray(R.array.ability_ero)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Erõ).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_gyorsasag)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Gyorsaság).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_ugyesseg)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Ügyesség).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_allokepesseg)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Állóképesség).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_egeszseg)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Egészség).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_szepseg)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Szépség).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_intelligencia)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Intelligencia).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_akaratero)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Akaraterõ).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.ability_asztral)[raceID];
+		if (value != 0)
+			getProperty(PropertyType.Asztrál).AddModificatory(new SimpleProperty(base, value));
+
+		base = "Kaszt alap";
+		value = res.getIntArray(R.array.caste_KE)[casteID];
+		if (value != 0)
+			getProperty(PropertyType.KÉ).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.caste_TE)[casteID];
+		if (value != 0)
+			getProperty(PropertyType.TÉ).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.caste_VE)[casteID];
+		if (value != 0)
+			getProperty(PropertyType.VÉ).AddModificatory(new SimpleProperty(base, value));
+		value = res.getIntArray(R.array.caste_CE)[casteID];
+		if (value != 0)
+			getProperty(PropertyType.CÉ).AddModificatory(new SimpleProperty(base, value));
 
 		Equipment e = new Equipment("Varázsital");
 		e.AddPropertyModifier(PropertyType.Erõ, 2);
@@ -66,6 +147,35 @@ public class CharacterSheet {
 			}
 		}
 		return null;
+	}
+
+	public String getRaceName() {
+		return raceName;
+	}
+
+	public String getCasteName() {
+		return casteName;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s %d éves (%s, %s)", getName(), getAge(), getRaceName(), getCasteName());
 	}
 
 	public void AddEquipment(Equipment e) {
@@ -86,13 +196,15 @@ public class CharacterSheet {
 }
 
 enum PropertyType {
-	Erõ, Gyorsaság, Ügyesség, Állóképesség, Egészség, Szépség, Intelligencia, Akaraterõ, Asztrál, KÉ, TÉ, VÉ, CÉ, SFÉ, MGT
+	Erõ, Gyorsaság, Ügyesség, Állóképesség, Egészség, Szépség, Intelligencia, Akaraterõ, Asztrál, KÉ, TÉ, VÉ, CÉ, SFÉ, MGT, Sp
 }
 
 interface BaseProperty {
 	int getValue();
 
 	String getName();
+
+	// void setOnRefreshListener();
 }
 
 class SimpleProperty implements BaseProperty {
@@ -155,19 +267,35 @@ class Property implements BaseProperty {
 		AddModificatory(p, null);
 	}
 
+	public String getSubProperties() {
+		String sum = "";
+		for (int i = 0; i < propertyList.size(); i++) {
+			Calculation c = calculationList.get(i);
+
+			int value = propertyList.get(i).getValue();
+			if (c != null) {
+				value = c.calculate(value);
+			}
+			if (value != 0) {
+				sum += propertyList.get(i).getName() + ": ";
+				sum += String.valueOf(value);
+				sum += "\n";
+			}
+		}
+		return sum;
+	}
+
 	public String getName() {
 		return name;
 	}
-
 }
 
 class Qualification implements BaseProperty {
-	String name;
-	QualificationType type;
+	String qualificationName;
 	int qualificationID;
-	
-	public Qualification(String name, QualificationType type){
-		
+
+	public Qualification(int qualificationID) {
+
 	}
 
 	public int getValue() {

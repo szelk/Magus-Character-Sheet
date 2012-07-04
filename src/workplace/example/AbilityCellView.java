@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class AbilityCellView extends LinearLayout {
 	View view;
+	TextView tvValue;
 	BaseProperty property;
 
 	public AbilityCellView(Context context, AttributeSet attrs) {
@@ -24,9 +25,9 @@ public class AbilityCellView extends LinearLayout {
 		if (myText != null) {
 			((TextView) view.findViewById(R.id.tvTitle)).setText(myText);
 		}
+		tvValue = (TextView) view.findViewById(R.id.tvValue);
 
 		a.recycle();
-		
 	}
 
 	public void setProperty(BaseProperty property) {
@@ -41,6 +42,6 @@ public class AbilityCellView extends LinearLayout {
 	}
 
 	public void Refresh() {
-		((TextView) view.findViewById(R.id.tvValue)).setText(String.valueOf(property.getValue()));
+		tvValue.setText(String.valueOf(property.getValue()));
 	}
 }
